@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTypingEffect();
   initScrollProgress();
   initMobileMenu();
+  renderSkills();
 });
 
 function initCustomCursor() {
@@ -146,4 +147,89 @@ function initMobileMenu() {
       navLinks.classList.remove("active");
     });
   });
+}
+
+const skillsData = [
+  {
+    category: "Programming Languages",
+    skills: [
+      { name: "C", percentage: 60 },
+      { name: "C++", percentage: 60 },
+      { name: "CSS", percentage: 85 },
+      { name: "HTML", percentage: 90 },
+      { name: "JavaScript", percentage: 70 },
+      { name: "TypeScript", percentage: 65 }
+    ]
+  },
+  {
+    category: "Libraries & Frameworks",
+    skills: [
+      { name: "React Native", percentage: 100 },
+      { name: "Express Js", percentage: 60 },
+      { name: "Redux", percentage: 80 },
+      { name: "Firebase", percentage: 70 },
+      { name: "Axios", percentage: 85 }
+    ]
+  },
+  {
+    category: "Databases",
+    skills: [
+      { name: "Firebase", percentage: 70 },
+      { name: "SQLite", percentage: 80 },
+      { name: "MongoDB", percentage: 65 }
+    ]
+  },
+  {
+    category: "Tools & Platforms",
+    skills: [
+      { name: "VS Code", percentage: 90 },
+      { name: "Android Studio", percentage: 85 },
+      { name: "GitHub", percentage: 80 },
+      { name: "Teams", percentage: 90 },
+      { name: "Postman", percentage: 75 }
+    ]
+  },
+  {
+    category: "Operating Systems",
+    skills: [
+      { name: "Windows", percentage: 90 },
+      { name: "Mac OS", percentage: 80 },
+      { name: "Linux", percentage: 70 }
+    ]
+  },
+  {
+    category: "Spoken Languages",
+    skills: [
+      { name: "English", percentage: 70 },
+      { name: "Hindi", percentage: 100 },
+      { name: "Gujarati", percentage: 100 }
+    ]
+  }
+];
+
+function renderSkills() {
+  const container = document.getElementById("skills-container");
+  if (!container) return;
+
+  let html = "";
+  skillsData.forEach(category => {
+    let skillsHtml = "";
+    category.skills.forEach(skill => {
+      skillsHtml += `
+          <div class="skill-box">
+            <div class="skill-name"><span>${skill.name}</span></div>
+            <div class="skill-bar"><span class="skill-per" style="width: ${skill.percentage}%;"></span></div>
+          </div>`;
+    });
+
+    html += `
+      <div class="card" style="padding: 25px; background: rgba(56,189,248,0.03);">
+        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: #38bdf8;">${category.category}</h3>
+        <div class="skills-column">
+${skillsHtml}
+        </div>
+      </div>`;
+  });
+
+  container.innerHTML = html;
 }
