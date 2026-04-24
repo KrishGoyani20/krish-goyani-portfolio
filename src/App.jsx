@@ -1,62 +1,44 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
-import Stats from './components/Stats';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  // Global scroll scroll reveal hook
-  useEffect(() => {
-    const elements = document.querySelectorAll(".section-reveal");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
-    });
-
-    elements.forEach(el => {
-      observer.observe(el);
-    });
-
-    return () => {
-      elements.forEach(el => observer.unobserve(el));
-    };
-  }, []);
-
   return (
-    <>
-      <Navbar />
-      <CustomCursor />
-      <Hero />
-      <About />
-      <Skills />
-      <Stats />
-      <Projects />
-      <Experience />
-      <Education />
-      
-      <section className="section-reveal glass cta">
-        <h2>Let's build something epic ✨</h2>
-        <p>Looking for a React Native developer to bring your vision to life? Let's connect.</p>
-        <a href="https://wa.me/917698699316" target="_blank" rel="noreferrer" className="btn btn-primary">Chat on WhatsApp</a>
-      </section>
+    <div style={{
+      position: 'relative',
+      minHeight: '100vh',
+      background: 'radial-gradient(ellipse at 0% 0%, rgba(56,189,248,0.05) 0%, transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(129,140,248,0.05) 0%, transparent 50%), #030712',
+    }}>
+      {/* Subtle grid background */}
+      <div style={{
+        position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0,
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px)',
+        backgroundSize: '60px 60px',
+      }} />
 
-      <Contact />
-      <Footer />
-    </>
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <CustomCursor />
+        <Navbar />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Education />
+        <Contact />
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </div>
   );
 }
 

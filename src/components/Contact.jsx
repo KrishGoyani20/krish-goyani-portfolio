@@ -1,31 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Link2, Globe, MapPin, Send, MessageSquare } from 'lucide-react';
+
+const socials = [
+  { icon: Mail, label: 'Email', value: 'krishgoyani13@gmail.com', href: 'mailto:krishgoyani13@gmail.com', color: '#38bdf8' },
+  { icon: Link2, label: 'LinkedIn', value: 'linkedin.com/in/krishgoyani', href: 'https://www.linkedin.com/in/krishgoyani', color: '#818cf8' },
+  { icon: MapPin, label: 'Location', value: 'Surat, Gujarat, India', href: '#', color: '#22d3ee' },
+];
 
 const Contact = () => {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    window.location.href = `mailto:krishgoyani13@gmail.com?subject=Portfolio Contact from ${form.name}&body=${form.message}%0A%0AFrom: ${form.email}`;
+  };
+
   return (
-    <section id="contact" className="section-reveal glass">
-      <h2>Connect</h2>
-      <div className="grid">
-        <div className="contact-links">
-          <a href="mailto:krishgoyani13@gmail.com">
-            <svg style={{ width: '24px', height: '24px', marginRight: '15px' }} viewBox="0 0 24 24">
-              <path fill="currentColor" d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
-            </svg>
-            krishgoyani13@gmail.com
-          </a>
-          <a href="https://www.linkedin.com/in/krishgoyani" target="_blank" rel="noreferrer">
-            <svg style={{ width: '24px', height: '24px', marginRight: '15px' }} viewBox="0 0 24 24">
-              <path fill="currentColor" d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z" />
-            </svg>
-            Krish Goyani
-          </a>
-          <a href="#home">
-            <svg style={{ width: '24px', height: '24px', marginRight: '15px' }} viewBox="0 0 24 24">
-              <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
-            </svg>
-            Surat, Gujarat
-          </a>
-        </div>
+    <section id="contact" style={{ padding: '100px 80px', maxWidth: '1200px', margin: '0 auto' }}>
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: '60px', textAlign: 'center' }}>
+        <p style={{ color: '#38bdf8', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '12px', fontFamily: "'Inter', sans-serif" }}>Get In Touch</p>
+        <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#fff', marginBottom: '16px' }}>Let's Connect</h2>
+        <div style={{ width: '60px', height: '3px', background: 'linear-gradient(90deg, #38bdf8, #818cf8)', borderRadius: '2px', margin: '0 auto', boxShadow: '0 0 10px rgba(56,189,248,0.5)' }} />
+      </motion.div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
+        {/* Left */}
+        <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+          <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.5rem', fontWeight: 700, color: '#fff', marginBottom: '16px' }}>Let's build something epic ✨</h3>
+          <p style={{ color: '#94a3b8', lineHeight: 1.8, marginBottom: '40px', fontSize: '0.97rem', fontFamily: "'Inter', sans-serif" }}>
+            Looking for a React Native developer to bring your vision to life? Whether it's a project discussion,
+            a job opportunity, or just want to say hi — my inbox is always open.
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '40px' }}>
+            {socials.map((s, i) => (
+              <motion.a key={i} href={s.href} target={s.href !== '#' ? '_blank' : undefined} rel="noreferrer"
+                initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                whileHover={{ x: 8 }}
+                style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '18px 22px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', textDecoration: 'none', transition: 'border-color 0.3s' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, background: `${s.color}14`, border: `1px solid ${s.color}28` }}>
+                  <s.icon size={16} style={{ color: s.color }} />
+                </div>
+                <div>
+                  <p style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px', fontFamily: "'Inter', sans-serif" }}>{s.label}</p>
+                  <p style={{ color: '#e2e8f0', fontSize: '0.9rem', fontWeight: 500, fontFamily: "'Inter', sans-serif" }}>{s.value}</p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+
+          <motion.a href="https://wa.me/917698699316" target="_blank" rel="noreferrer"
+            whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(56,189,248,0.4)' }} whileTap={{ scale: 0.97 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none', fontFamily: "'Inter', sans-serif", background: 'linear-gradient(135deg, #38bdf8, #818cf8)', color: '#030712' }}>
+            <MessageSquare size={17} />Chat on WhatsApp
+          </motion.a>
+        </motion.div>
+
+        {/* Right — Form */}
+        <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+          <form onSubmit={handleSubmit} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '20px', padding: '40px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div>
+              <label style={{ display: 'block', color: '#94a3b8', fontSize: '0.85rem', marginBottom: '8px', fontFamily: "'Inter', sans-serif" }}>Your Name</label>
+              <input name="name" value={form.name} onChange={handleChange} placeholder="Krish Goyani" required className="neon-input" />
+            </div>
+            <div>
+              <label style={{ display: 'block', color: '#94a3b8', fontSize: '0.85rem', marginBottom: '8px', fontFamily: "'Inter', sans-serif" }}>Email Address</label>
+              <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="hello@example.com" required className="neon-input" />
+            </div>
+            <div>
+              <label style={{ display: 'block', color: '#94a3b8', fontSize: '0.85rem', marginBottom: '8px', fontFamily: "'Inter', sans-serif" }}>Message</label>
+              <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell me about your project..." required rows={5} className="neon-input" style={{ resize: 'none' }} />
+            </div>
+            <motion.button type="submit"
+              whileHover={{ scale: 1.03, boxShadow: '0 0 25px rgba(56,189,248,0.4)' }} whileTap={{ scale: 0.97 }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px', borderRadius: '12px', fontWeight: 700, fontSize: '0.95rem', border: 'none', cursor: 'pointer', fontFamily: "'Inter', sans-serif", background: 'linear-gradient(135deg, #38bdf8, #818cf8)', color: '#030712', marginTop: '4px' }}>
+              <Send size={16} />Send Message
+            </motion.button>
+          </form>
+        </motion.div>
       </div>
+      <style>{`@media (max-width: 768px) { #contact { padding: 70px 24px !important; } #contact > div:last-child { grid-template-columns: 1fr !important; } }`}</style>
     </section>
   );
 };

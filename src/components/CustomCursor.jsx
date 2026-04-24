@@ -12,55 +12,41 @@ const CustomCursor = () => {
     const moveCursor = (e) => {
       dot.style.left = `${e.clientX}px`;
       dot.style.top = `${e.clientY}px`;
-
-      glow.animate({
-        left: `${e.clientX}px`,
-        top: `${e.clientY}px`
-      }, {
-        duration: 800,
-        fill: "forwards"
-      });
+      glow.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 800, fill: 'forwards' });
     };
 
-    window.addEventListener("mousemove", moveCursor);
-
-    const handleMouseEnter = () => {
-      dot.style.width = "40px";
-      dot.style.height = "40px";
-      dot.style.backgroundColor = "transparent";
-      dot.style.border = "2px solid #38bdf8";
-      glow.style.width = "600px";
-      glow.style.height = "600px";
+    const expand = () => {
+      dot.style.width = '36px';
+      dot.style.height = '36px';
+      dot.style.background = 'transparent';
+      dot.style.border = '2px solid #38bdf8';
+    };
+    const shrink = () => {
+      dot.style.width = '10px';
+      dot.style.height = '10px';
+      dot.style.background = '#38bdf8';
+      dot.style.border = 'none';
     };
 
-    const handleMouseLeave = () => {
-      dot.style.width = "12px";
-      dot.style.height = "12px";
-      dot.style.backgroundColor = "#38bdf8";
-      dot.style.border = "none";
-      glow.style.width = "400px";
-      glow.style.height = "400px";
-    };
-
-    const interactables = document.querySelectorAll('a, button, .card, .menu-toggle');
-    interactables.forEach(el => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener('mousemove', moveCursor);
+    document.querySelectorAll('a, button, .card-hover').forEach(el => {
+      el.addEventListener('mouseenter', expand);
+      el.addEventListener('mouseleave', shrink);
     });
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      interactables.forEach(el => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener('mousemove', moveCursor);
+      document.querySelectorAll('a, button, .card-hover').forEach(el => {
+        el.removeEventListener('mouseenter', expand);
+        el.removeEventListener('mouseleave', shrink);
       });
     };
   }, []);
 
   return (
     <>
-      <div id="cursor-dot" ref={dotRef}></div>
-      <div id="cursor-glow" ref={glowRef}></div>
+      <div id="cursor-dot" ref={dotRef} />
+      <div id="cursor-glow" ref={glowRef} />
     </>
   );
 };
