@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, GitBranch } from 'lucide-react';
+import { GitBranch } from 'lucide-react';
 
 const projects = [
   {
@@ -40,7 +40,7 @@ const Projects = () => {
           <motion.div key={i}
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6 }}
             whileHover={{ y: -10 }}
-            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '20px', overflow: 'hidden', transition: 'box-shadow 0.4s, transform 0.4s' }}
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '20px', overflow: 'hidden', transition: 'box-shadow 0.4s, transform 0.4s', display: 'flex', flexDirection: 'column' }}
             onMouseEnter={e => e.currentTarget.style.boxShadow = `0 30px 80px rgba(0,0,0,0.5), 0 0 40px ${proj.color}12`}
             onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
           >
@@ -54,7 +54,7 @@ const Projects = () => {
             </div>
 
             {/* Content */}
-            <div style={{ padding: '28px 28px 32px' }}>
+            <div style={{ padding: '28px 28px 32px', display: 'flex', flexDirection: 'column', flex: 1 }}>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
                 {proj.tags.map(tag => (
                   <span key={tag} style={{ fontSize: '0.75rem', padding: '4px 12px', borderRadius: '20px', fontWeight: 500, background: `${proj.color}12`, border: `1px solid ${proj.color}28`, color: proj.color, fontFamily: "'Inter', sans-serif" }}>{tag}</span>
@@ -62,14 +62,10 @@ const Projects = () => {
               </div>
               <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>{proj.title}</h3>
               <p style={{ color: '#94a3b8', fontSize: '0.88rem', lineHeight: 1.7, marginBottom: '24px', fontFamily: "'Inter', sans-serif" }}>{proj.description}</p>
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 18px', borderRadius: '10px', fontSize: '0.8rem', fontWeight: 600, border: 'none', cursor: 'pointer', background: `${proj.color}14`, border: `1px solid ${proj.color}28`, color: proj.color, fontFamily: "'Inter', sans-serif" }}>
-                  <ExternalLink size={13} />Live Demo
-                </motion.button>
-                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 18px', borderRadius: '10px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: 'rgba(255,255,255,0.05)', color: '#94a3b8', fontFamily: "'Inter', sans-serif" }}>
-                  <GitBranch size={13} />GitHub
+              <div style={{ display: 'flex', marginTop: 'auto' }}>
+                <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }}
+                  style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '11px 18px', borderRadius: '10px', fontSize: '0.85rem', fontWeight: 600, border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: 'rgba(255,255,255,0.05)', color: '#94a3b8', fontFamily: "'Inter', sans-serif" }}>
+                  <GitBranch size={14} />GitHub
                 </motion.button>
               </div>
             </div>
